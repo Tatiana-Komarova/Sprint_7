@@ -1,8 +1,10 @@
 import requests
 import data
+import allure
 
 class OrderMethods:
     @staticmethod
+    @allure.step('Создание заказа')
     def create_order(order_data):
         body = order_data.copy()
         if "color" in body and isinstance(body["color"], str):
@@ -11,5 +13,6 @@ class OrderMethods:
 
 
     @staticmethod
+    @allure.step('Получение списка заказов')
     def get_orders():
         return requests.get(f"{data.Url.BASE_URL}{data.Url.ORDER_LIST_URL}")
